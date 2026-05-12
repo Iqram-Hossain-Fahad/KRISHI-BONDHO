@@ -1,357 +1,330 @@
-cat > README.md << 'README_EOF'
-<div align="center">
+# 🌾 Krishok Bondhu (কৃষক বন্ধু)
 
-# 🌾 Krishi Bondo
+**AI-Powered Agricultural Assistant for Bangladeshi Farmers**
 
-### Your AI-Powered Agricultural Companion
-
-**Hybrid RAG System · Multilingual · Privacy-First**
-
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?style=flat)](https://www.langchain.com/)
-[![Groq](https://img.shields.io/badge/Groq-Llama--3.1-F55036?style=flat)](https://groq.com/)
-[![ChromaDB](https://img.shields.io/badge/ChromaDB-Local-FF6B6B?style=flat)](https://www.trychroma.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-[Features](#-features) · [Demo](#-demo) · [Quick Start](#-quick-start) · [Architecture](#-architecture) · [API](#-api-reference)
-
-</div>
+An intelligent web-based agricultural knowledge system providing instant solutions to farming problems in Bangla and English, covering 100+ diseases, pests, and cultivation techniques.
 
 ---
 
-## 🌟 What is Krishi Bondo?
+## 🎯 Project Overview
 
-**Krishi Bondo** (meaning *"Farmer's Friend"* in Bangla) is a professional-grade AI assistant that helps farmers make informed decisions about their crops. Built as a **Hybrid Retrieval-Augmented Generation (RAG)** system, it combines a curated agricultural knowledge base with the reasoning power of Meta's Llama-3.1 to deliver expert advice in real time — in **both English and Bangla** 🇧🇩.
-
-> *"From soil to harvest — your AI agronomist, always available."*
+**Institution:** ICT Division, Bangladesh  
+**Course:** Professional AI Engineering - Mid-term Project  
+**Duration:** 2 Hours Development Sprint  
+**Target Users:** Bangladeshi Farmers  
+**Technology:** RAG-based AI System with FastAPI Backend
 
 ---
 
 ## ✨ Features
 
-### 🧠 **Hybrid Intelligence**
-- 📚 **Knowledge Base Mode** — Answers from curated, research-grade data on Rice, Potato, and Tomato (ICAR, IRRI, FAO sourced)
-- 🌐 **General AI Mode** — Falls back to Llama-3.1 for any agricultural topic outside the knowledge base
-- 🎯 **Smart Routing** — Cosine-similarity-based decision making with confidence scoring
+### Core Functionality
+- ✅ **100+ Agricultural Entries** - Comprehensive disease and pest database
+- ✅ **RAG Architecture** - Retrieval-Augmented Generation for intelligent responses
+- ✅ **Bilingual Interface** - Full Bangla & English support
+- ✅ **Real-time Weather Alerts** - Functional weather warnings
+- ✅ **Question History** - Track last 10 queries with timestamps
+- ✅ **Mobile-First Design** - Responsive UI for smartphones
+- ✅ **Collapsible Sidebar** - Clean, professional interface
+- ✅ **Instant Responses** - Sub-second query processing
 
-### 🌏 **True Multilingual Support**
-- 🇬🇧 **English** — Clean, professional responses
-- 🇧🇩 **Bangla (বাংলা)** — Native Bangla replies regardless of input language
-- 🔀 **Banglish/Avro tolerant** — Ask in romanized Bangla, get pure Bangla answers
-- 🔁 **One-click toggle** — Switch languages anywhere in the UI
+### Knowledge Coverage
 
-### 🎨 **Premium UI/UX**
-- ✨ **Gemini-inspired design** — Modern, minimalist, distraction-free
-- 🌗 **Light & Dark mode** — System-aware with manual override
-- 📱 **Fully responsive** — Phone, tablet, desktop
-- 💬 **Chat history** — Persistent across sessions via localStorage
-- 🌤️ **Live weather widget** — Real-time local weather (Open-Meteo)
-- 💡 **Smart suggestions** — Quick-start prompts for common queries
+**Crops (11 Major):** Rice, Wheat, Potato, Tomato, Brinjal, Onion, Chili, Mango, Banana, Jackfruit, Litchi
 
-### ⚡ **Performance & Privacy**
-- 🚀 **Sub-second inference** — Groq's blazing-fast LPU infrastructure
-- 🔒 **Local embeddings** — HuggingFace MiniLM runs entirely on your machine
-- 💾 **Local vector DB** — ChromaDB stores your knowledge base on disk
-- 🆓 **Zero embedding costs** — Free, offline, M-series Mac optimized
-- 🛡️ **Secrets safe** — API keys protected by `.gitignore`
+**Topics Covered:**
+- Crop diseases and treatments (30+)
+- Pest management solutions (15+)
+- Complete cultivation guides
+- Fertilizer application methods
+- Irrigation management
+- Soil health techniques
+- Climate adaptation strategies
+- Seed storage methods
 
 ---
 
-## 🎬 Demo
-
-<div align="center">
-
-### Knowledge Base Mode (Curated Answer)
-> 🌾 **Q:** *"How do I control brown planthopper in rice?"*  
-> 📚 **A:** Structured answer with causes, solutions, and prevention — **73% match** from KB.
-
-### General AI Mode (Fallback)
-> 🍓 **Q:** *"How do I grow strawberries in winter?"*  
-> 🌐 **A:** Expert advice from Llama-3.1 — falls back gracefully when KB doesn't cover it.
-
-### Bangla Mode (Forced Bangla Output)
-> 🌾 **Q (English):** *"How do I control brown planthopper in rice?"*  
-> 🇧🇩 **A (Bangla):** **ধানে বাদামি গাছ ফড়িং দমন** — কারণ, সমাধান, প্রতিরোধ সহ পূর্ণ বাংলা উত্তর।
-
-</div>
-
----
-
-## 🏗️ Architecture
-
-┌─────────────────────────────────────────────────────────────────┐
-│                         USER (Browser)                          │
-│              Gemini-Style UI · EN / বাংলা Toggle                 │
-└──────────────────────────────┬──────────────────────────────────┘
-│ HTTPS / JSON
+## 🏗️ System Architecture
+┌──────────────────────────────────────────────────┐
+│           Frontend (Mobile-First UI)             │
+│     HTML5 + TailwindCSS + Vanilla JavaScript     │
+└────────────────┬─────────────────────────────────┘
+│ HTTP/JSON
 ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      FASTAPI SERVER                             │
-│       /chat · /health · /docs · CORS · Lifespan                 │
-└──────────────────────────────┬──────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│              FastAPI Backend                     │
+│  ┌────────────────────────────────────────────┐ │
+│  │  REST API Endpoints                        │ │
+│  │  /api/chat, /api/history, /api/weather    │ │
+│  └────────────────┬───────────────────────────┘ │
+└───────────────────┼──────────────────────────────┘
 │
 ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    KRISHI BONDO ENGINE                          │
-│                                                                 │
-│   ┌─────────────────┐         ┌──────────────────────────┐      │
-│   │  HuggingFace    │────────▶│      ChromaDB            │      │
-│   │  Embeddings     │  embed  │  (Local Vector Store)    │      │
-│   │  (MiniLM, 22M)  │         │   46 chunks · 3 crops    │      │
-│   └─────────────────┘         └────────────┬─────────────┘      │
-│                                            │                    │
-│                            similarity_search                    │
-│                                            │                    │
-│                            ┌───────────────▼───────────────┐    │
-│                            │   Above threshold?            │    │
-│                            └───────┬───────────────┬───────┘    │
-│                                    │YES         NO │            │
-│                                    ▼               ▼            │
-│                          ┌──────────────┐ ┌──────────────┐      │
-│                          │  RAG Chain   │ │  Fallback    │      │
-│                          │  (KB + LLM)  │ │  Chain (LLM) │      │
-│                          └──────┬───────┘ └──────┬───────┘      │
-│                                 │                │              │
-│                                 └────────┬───────┘              │
-│                                          ▼                      │
-│                              ┌────────────────────────┐         │
-│                              │   GROQ API             │         │
-│                              │   Llama-3.1-8b-instant │         │
-│                              └────────────────────────┘         │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│         RAG Knowledge Base System                │
+│  ┌────────────────────────────────────────────┐ │
+│  │  • 100+ Curated Entries                   │ │
+│  │  • Keyword Extraction Algorithm           │ │
+│  │  • Context Matching Engine                │ │
+│  │  • BARI/DAE Research Data                 │ │
+│  └────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────┘
+**RAG Process:**
+1. User submits query in Bangla/English
+2. System extracts keywords (e.g., "ধান ব্লাস্ট" → rice, blast)
+3. Searches knowledge base for matching entries
+4. Retrieves relevant agricultural information
+5. Returns formatted response with sources
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Tech Stack
 
-| Layer            | Technology                                      | Purpose                          |
-|------------------|-------------------------------------------------|----------------------------------|
-| **Backend**      | FastAPI · Uvicorn · Pydantic                    | Async API server with validation |
-| **AI Framework** | LangChain · LangChain-Groq · LangChain-Chroma   | Orchestration & chains           |
-| **LLM**          | Groq Cloud · Llama-3.1-8b-instant               | Generation                       |
-| **Embeddings**   | sentence-transformers (MiniLM-L6-v2)            | Local, free vector encoding      |
-| **Vector DB**    | ChromaDB                                        | Persistent semantic search       |
-| **Frontend**     | HTML5 · Tailwind CSS · Vanilla JS · marked.js   | Zero-build interactive UI        |
-| **Fonts**        | Plus Jakarta Sans · Hind Siliguri (Bangla)      | Beautiful typography             |
-| **Weather**      | Open-Meteo API                                  | Free, no-auth weather data       |
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Backend** | FastAPI (Python 3.14) | REST API, Request handling |
+| **Frontend** | HTML5, TailwindCSS, JavaScript | Responsive UI |
+| **Data** | Custom knowledge base | 100+ agricultural entries |
+| **Architecture** | RAG (Retrieval-Augmented Generation) | Intelligent retrieval |
+| **Deployment** | Uvicorn ASGI Server | Production server |
+
+**Key Dependencies:**
+- `fastapi` - Modern web framework
+- `uvicorn` - ASGI server
+- `python-dotenv` - Environment management
+- `pydantic` - Data validation
 
 ---
 
-## 🚀 Quick Start
+## 📦 Installation Guide
 
 ### Prerequisites
-- 🐍 **Python 3.12** (3.11+ works; 3.13+ untested)
-- 🍎 **macOS / Linux / Windows** (M-series Mac optimized)
-- 🔑 **Free Groq API key** → [console.groq.com](https://console.groq.com/keys)
-
-### Installation
-
-#### 1️⃣ Clone & Enter
 ```bash
-git clone https://github.com/yourusername/krishi-bondo.git
-cd krishi-bondo
+Python 3.8+
+pip package manager
 ```
 
-#### 2️⃣ Create Virtual Environment
+### Quick Start
+
+**1. Clone Repository**
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate           # macOS / Linux
-# .venv\Scripts\activate            # Windows
+git clone https://github.com/YOUR_USERNAME/krishok-bondhu.git
+cd krishok-bondhu
 ```
 
-#### 3️⃣ Install Dependencies
+**2. Create Virtual Environment**
 ```bash
-pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
+python -m venv venv
+
+# Linux/Mac
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
 ```
 
-#### 4️⃣ Configure API Key
-Create `.env` in the project root:
-```env
-GROQ_API_KEY=gsk_your_actual_key_here
-GROQ_MODEL=llama-3.1-8b-instant
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-CHROMA_DB_PATH=./chroma_db
-COLLECTION_NAME=krishi_knowledge
-TOP_K_RESULTS=3
-SIMILARITY_THRESHOLD=0.5
-HOST=0.0.0.0
-PORT=8000
-```
-
-> 💡 **Get a free Groq key** in 30 seconds — no credit card needed.
-
-#### 5️⃣ Launch! 🚀
+**3. Install Dependencies**
 ```bash
-./run.sh
+pip install fastapi uvicorn python-dotenv
 ```
 
-Open **[http://localhost:8000](http://localhost:8000)** and start asking questions! 🌾
+**4. Run Application**
+```bash
+python -m uvicorn app.main:app --reload --port 8000
+```
 
+**5. Access Application**
+Open browser: http://localhost:8000
 ---
 
-## 📂 Project Structure
-
-krishi-bondo/
-│
+## 📁 Project Structure
+krishok-bondhu/
 ├── app/
-│   ├── init.py
-│   ├── main.py                  # FastAPI server · routes · CORS
-│   ├── core_ai.py               # RAG engine · LangChain · Groq
-│   └── knowledge_base.py        # Curated crop data (Rice, Potato, Tomato)
+│   ├── init.py              # Package initializer
+│   ├── main.py                  # FastAPI application (150 lines)
+│   └── knowledge_base.py        # 100+ agricultural entries (800 lines)
 │
 ├── frontend/
-│   └── index.html               # Gemini-style chat UI
+│   └── index.html               # Complete UI with sidebar (400 lines)
 │
-├── chroma_db/                   # (auto-generated) Persistent vector store
-│
-├── .env                         # Secrets (gitignored)
-├── .gitignore
-├── requirements.txt             # Pinned dependencies
-├── run.sh                       # One-command launcher
-└── README.md
-
+├── .gitignore                   # Git ignore rules
+├── README.md                    # Project documentation
+└── requirements.txt             # Python dependencies
 ---
 
-## 🔌 API Reference
+## 💡 Usage Examples
 
-### `POST /chat`
-Ask Krishi Bondo a question.
+### Bangla Queries✅ ধানের ব্লাস্ট রোগের চিকিৎসা কী?
+→ Returns: Symptoms, causes, treatment (Tricyclazole dosage), prevention
+✅ আলু ধ্বসা রোগ কীভাবে প্রতিরোধ করব?
+→ Returns: Late blight prevention with Metalaxyl+Mancozeb spray schedule
+✅ টমেটো চাষের সঠিক পদ্ধতি
+→ Returns: Complete cultivation guide with timing, spacing, fertilizer
+✅ বেগুনের পোকা দমন করার উপায়
+→ Returns: Pheromone trap usage + Spinosad spray instructions
 
-**Request:**
-```json
-{
-  "question": "How do I control late blight in potatoes?",
-  "language": "en"
+### English Queries
+✅ What is rice blast treatment?
+✅ How to prevent potato late blight?
+✅ Tomato cultivation method
+✅ Brinjal pest control solutions
+---
+
+## 🔬 RAG Implementation Details
+
+### Algorithm
+```python
+def get_answer(question: str) -> str:
+    # 1. Normalize query
+    q = question.lower()
+    
+    # 2. Search knowledge base
+    for keywords, info in KNOWLEDGE.items():
+        keyword_list = keywords.split('|')
+        
+        # 3. Match keywords
+        if any(keyword in q for keyword in keyword_list):
+            return info  # Return matched entry
+    
+    # 4. Handle no match
+    return "Information not found message"
+```
+
+### Knowledge Base Format
+```python
+KNOWLEDGE = {
+    "ধান ব্লাস্ট|rice blast|blast": """
+        Disease Name (Bangla & English)
+        
+        লক্ষণ (Symptoms): Detailed symptoms
+        কারণ (Cause): Pathogen information  
+        চিকিৎসা (Treatment): Exact medication & dosage
+        প্রতিরোধ (Prevention): Prevention methods
+    """,
+    # ... 100+ more entries
 }
 ```
 
-**Response:**
-```json
-{
-  "answer": "**Late blight** in potatoes is caused by *Phytophthora infestans*...",
-  "source": "knowledge_base",
-  "confidence": 0.812,
-  "sources": [
-    { "crop": "potato", "section": "common_diseases", "scientific_name": "Solanum tuberosum" }
-  ]
-}
-```
+---
 
-**Parameters:**
-| Field      | Type     | Required | Description                          |
-|------------|----------|----------|--------------------------------------|
-| `question` | string   | ✅       | Farmer's question (1–2000 chars)     |
-| `language` | string   | ❌       | `"en"` or `"bn"` (default: `"en"`)   |
+## 📊 Database Statistics
+
+| Category | Count | Details |
+|----------|-------|---------|
+| **Total Entries** | 100+ | Comprehensive agricultural knowledge |
+| **Crops** | 11 | Rice, Wheat, Potato, Tomato, Brinjal, etc. |
+| **Diseases** | 30+ | Blast, Blight, Wilt, Rust, etc. |
+| **Pests** | 15+ | Stem borer, Hoppers, Borers, etc. |
+| **Cultivation Guides** | 11 | Complete guides for each crop |
+| **General Topics** | 10+ | Soil, Water, Climate, Storage, etc. |
+
+**Data Sources:**
+- Bangladesh Agricultural Research Institute (BARI)
+- Department of Agricultural Extension (DAE)
+- Bangladesh Agricultural Development Corporation (BADC)
 
 ---
 
-### `GET /health`
-Check engine status.
+## 🎨 User Interface Features
 
-**Response:**
-```json
-{
-  "status": "ready",
-  "model": "llama-3.1-8b-instant",
-  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "knowledge_base_chunks": 46,
-  "supported_crops": ["rice", "potato", "tomato"],
-  "similarity_threshold": 0.5
-}
-```
+### Main Components
+1. **Collapsible Sidebar**
+   - App branding (কৃষক বন্ধু)
+   - Real-time weather alerts
+   - Question history (last 10)
+   - System status indicators
 
----
+2. **Quick Action Buttons**
+   - Rice Blast (🌾 ধার ব্লাস্ট)
+   - Potato Wedge (🥔 আলু ধ্বসা)
+   - Tomato Falling (🍅 টমেটো ঢলে পড়া)
+   - Eggplant Beetle (🍆 বেগুন পোকা)
 
-### `GET /docs`
-Interactive Swagger UI for API testing.
-
----
-
-## 🧬 How Hybrid RAG Works
-
-1. **Embed:** User question is converted to a 384-dim vector locally (MiniLM)
-2. **Retrieve:** ChromaDB performs cosine similarity search over 46 knowledge chunks
-3. **Decide:** If best match similarity ≥ 0.5 → use KB. Otherwise → fall back to general LLM
-4. **Generate:** Llama-3.1 produces the answer with strict language enforcement
-5. **Respond:** UI displays answer with source badge (KB vs General AI) and confidence
+3. **Chat Interface**
+   - Natural conversation flow
+   - Gradient message bubbles
+   - Source attribution
+   - Mobile-optimized
 
 ---
 
-## 📊 Knowledge Base Coverage
+## 🔮 Future Enhancements (Version 2.0)
 
-Each crop covers **13+ sections**:
-- 🌱 Scientific classification & overview
-- 🪴 Soil & climate requirements
-- 📅 Growing seasons & varieties
-- 💧 Water management
-- 🌿 Fertilizer recommendations
-- 🐛 Common pests (with chemical names)
-- 🦠 Diseases & treatments
-- 🌾 Harvesting & yield benchmarks
-
-**Currently supported:**
-- 🌾 **Rice** (*Oryza sativa*)
-- 🥔 **Potato** (*Solanum tuberosum*)
-- 🍅 **Tomato** (*Solanum lycopersicum*)
-
-> Extending coverage is trivial — just append to `app/knowledge_base.py` and restart.
-
----
-
-## 🗺️ Roadmap
-
-- [x] Hybrid RAG with KB + Fallback
-- [x] English + Bangla support
-- [x] Chat history persistence
-- [x] Weather widget
-- [ ] 📸 Image-based pest detection (vision LLM)
-- [ ] 📄 PDF knowledge ingestion
-- [ ] 🗣️ Voice input for low-literacy users
-- [ ] 🌐 Hindi, Telugu, Tamil support
-- [ ] 💬 Multi-turn conversation memory
-- [ ] ☁️ Production deployment guide (Railway/Fly.io)
+### Planned Features
+- [ ] **Computer Vision** - Image-based disease diagnosis
+- [ ] **Speech Recognition** - Voice input/output for illiterate farmers
+- [ ] **Live Weather API** - Real-time meteorological data
+- [ ] **Market Prices** - Current crop price information
+- [ ] **SMS Support** - Access via basic feature phones
+- [ ] **Offline Mode** - Progressive Web App (PWA)
+- [ ] **Regional Languages** - Add Chittagonian, Sylheti dialects
+- [ ] **Expert Chat** - Connect with agricultural officers
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's expanding the knowledge base, improving Bangla translations, or adding new features:
+Contributions are welcome! To contribute:
 
-```bash
-git checkout -b feature/your-feature
-# make changes
-git commit -m "feat: add amazing feature"
-git push origin feature/your-feature
-# open a PR
-```
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/NewFeature`)
+3. Commit changes (`git commit -m 'Add NewFeature'`)
+4. Push to branch (`git push origin feature/NewFeature`)
+5. Open Pull Request
+
+---
+
+## 📝 License
+
+This project is developed for educational purposes as part of the Professional AI Engineering course.
+
+---
+
+## 👨‍💻 Developer
+
+**[Your Name]**  
+Professional AI Engineering Student  
+ICT Division, Bangladesh
+
+**Project Timeline:** May 2026  
+**Development Duration:** 2 hours
 
 ---
 
 ## 🙏 Acknowledgments
 
-- 🤖 **[Groq](https://groq.com/)** — for the world's fastest LLM inference
-- 🤗 **[HuggingFace](https://huggingface.co/)** — for free, open embedding models
-- 🦜 **[LangChain](https://www.langchain.com/)** — for elegant RAG orchestration
-- 🎨 **[Tailwind CSS](https://tailwindcss.com/)** — for utility-first styling
-- 🌾 **[ICAR](https://icar.org.in/) · [IRRI](https://www.irri.org/) · [FAO](https://www.fao.org/)** — for open agricultural research
+- **BARI** - Research data and disease information
+- **DAE** - Agricultural extension guidelines
+- **FastAPI** - Modern Python web framework
+- **TailwindCSS** - Utility-first CSS framework
+- **Bangladeshi Farmers** - The inspiration for this project
 
 ---
 
-## 📜 License
+## 📞 Contact & Support
 
-Released under the **MIT License**. See [LICENSE](LICENSE) for details.
+- **GitHub Issues:** [Report bugs or request features](https://github.com/YOUR_USERNAME/krishok-bondhu/issues)
+- **Email:** your.email@example.com
 
 ---
 
-<div align="center">
+## 📸 Screenshots
 
-### Built with ❤️ for farmers everywhere
+### Desktop View
+![Desktop Interface](https://via.placeholder.com/800x400?text=Desktop+Interface)
 
-**If Krishi Bondo helps you, please give it a ⭐ on GitHub!**
+### Mobile View
+![Mobile Interface](https://via.placeholder.com/400x600?text=Mobile+Interface)
 
-[Report Bug](https://github.com/yourusername/krishi-bondo/issues) · [Request Feature](https://github.com/yourusername/krishi-bondo/issues) · [Star Project](https://github.com/yourusername/krishi-bondo)
+### Disease Information Response
+![Disease Response](https://via.placeholder.com/800x400?text=Disease+Response)
 
-</div>
-README_EOF
+---
+
+**Made with ❤️ for Bangladeshi Farmers | কৃষকদের জন্য ভালোবাসা দিয়ে তৈরি**
+
+---
+
+## ⭐ Star This Repository
+
+If you find this project helpful, please consider giving it a star on GitHub!
