@@ -308,19 +308,6 @@ ICT Division, Bangladesh
 
 ---
 
-## 📸 Screenshots
-
-### Desktop View
-![Desktop Interface](https://via.placeholder.com/800x400?text=Desktop+Interface)
-
-### Mobile View
-![Mobile Interface](https://via.placeholder.com/400x600?text=Mobile+Interface)
-
-### Disease Information Response
-![Disease Response](https://via.placeholder.com/800x400?text=Disease+Response)
-
----
-
 **Made with ❤️ for Bangladeshi Farmers | কৃষকদের জন্য ভালোবাসা দিয়ে তৈরি**
 
 ---
